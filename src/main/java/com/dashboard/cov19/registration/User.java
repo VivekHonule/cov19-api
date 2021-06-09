@@ -1,9 +1,6 @@
 package com.dashboard.cov19.registration;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "usr")
 public class User {
@@ -11,10 +8,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
+    @Column(name = "firstName", nullable = false)
     private String fName;
+
+    @Column(name = "lastName", nullable = false)
     private String lName;
+
+    @Column(nullable = false, unique = true)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String state;
 
     public User() {

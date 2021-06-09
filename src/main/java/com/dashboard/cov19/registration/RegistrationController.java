@@ -1,5 +1,7 @@
 package com.dashboard.cov19.registration;
 
+import com.dashboard.cov19.Status;
+import com.dashboard.cov19.StatusType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,16 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String registerUser(@RequestBody User user) {
-        registrationRepository.save(user);
-        return "SUCCESS";
+    public Status registerUser(@RequestBody User user) {
+        //ToDO: This object should be sent as json as response
+        Status status;
+        try {
+            registrationRepository.save(user);
+            status = new Status(StatusType.SUCCESS, "SUCCESS");
+        } catch (Exception e) {
+            status = new Status(StatusType.ERROR, "Something went wrong");
+
+        }
+        return status;
     }
 }
