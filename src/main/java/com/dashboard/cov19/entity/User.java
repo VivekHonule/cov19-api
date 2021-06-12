@@ -1,4 +1,4 @@
-package com.dashboard.cov19.registration;
+package com.dashboard.cov19.entity;
 
 import javax.persistence.*;
 
@@ -10,10 +10,10 @@ public class User {
     private long id;
 
     @Column(name = "firstName", nullable = false)
-    private String fName;
+    private String firstName;
 
     @Column(name = "lastName", nullable = false)
-    private String lName;
+    private String lastName;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -21,26 +21,21 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String state;
-
-    public User() {
-    }
-
-    public User(String fName, String lName, String username, String password, String state) {
-        this.fName = fName;
-        this.lName = lName;
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.state = state;
     }
 
-    public String getfName() {
-        return fName;
+    public User() { }
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getUsername() {
@@ -51,16 +46,12 @@ public class User {
         return password;
     }
 
-    public String getState() {
-        return state;
+    public void setFirstName(String fName) {
+        this.firstName = fName;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setLastName(String lName) {
+        this.lastName = lName;
     }
 
     public void setUsername(String username) {
@@ -69,10 +60,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public long getId() {
