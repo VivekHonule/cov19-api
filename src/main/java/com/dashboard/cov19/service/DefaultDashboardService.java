@@ -26,22 +26,29 @@ public class DefaultDashboardService implements DashboardService {
     @Override
     public Collection<RegionViewModel> getAllCountries() {
         List<CovidCase> allCovidCases = covidCaseRepository.findAll();
-
-        //ToDo: This operation can be parallelized
         Map<String, RegionViewModel> countryWise = new HashMap<>();
-        for (CovidCase covidCase : allCovidCases) {
-            String country = covidCase.getCountry();
-            if (countryWise.containsKey(country)) {
-                RegionViewModel model = countryWise.get(country);
-                updateRegionModel(covidCase, model);
-            } else {
-                RegionViewModel model = new RegionViewModel();
-                model.setName(country);
-                updateRegionModel(covidCase, model);
-                countryWise.put(country, model);
-            }
-        }
+        allCovidCases.forEach(covidCase -> processCovidCase(countryWise, covidCase, covidCase.getCountry()));
         return countryWise.values();
+    }
+
+    @Override
+    public Collection<RegionViewModel> getAllStates(String country) {
+        List<CovidCase> byCountry = covidCaseRepository.findByCountry(country);
+        Map<String, RegionViewModel> stateWise = new HashMap<>();
+        byCountry.forEach(covidCase -> processCovidCase(stateWise, covidCase, covidCase.getState()));
+        return stateWise.values();
+    }
+
+    private void processCovidCase(Map<String, RegionViewModel> countryWise, CovidCase covidCase, String region) {
+        if (countryWise.containsKey(region)) {
+            RegionViewModel model = countryWise.get(region);
+            updateRegionModel(covidCase, model);
+        } else {
+            RegionViewModel model = new RegionViewModel();
+            model.setName(region);
+            updateRegionModel(covidCase, model);
+            countryWise.put(region, model);
+        }
     }
 
     private void updateRegionModel(CovidCase covidCase, RegionViewModel model) {

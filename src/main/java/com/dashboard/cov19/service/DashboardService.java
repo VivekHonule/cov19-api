@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface DashboardService {
     Collection<RegionViewModel> getAllCountries();
+
+    Collection<RegionViewModel> getAllStates(String country);
 }

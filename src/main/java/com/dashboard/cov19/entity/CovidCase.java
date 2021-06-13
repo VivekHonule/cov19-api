@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(indexes = @Index(columnList = "country"))
 public class CovidCase {
 
     @Id
