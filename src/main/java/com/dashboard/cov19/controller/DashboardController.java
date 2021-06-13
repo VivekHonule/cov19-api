@@ -26,4 +26,14 @@ public class DashboardController {
     public Collection<RegionViewModel> getStatesStats(@PathVariable("name") String country) {
         return dashboardService.getAllStates(country);
     }
+
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    public RegionViewModel getTodaysStats() {
+        return dashboardService.getTodaysData();
+    }
+
+    @RequestMapping(value = "/current/{country}", method = RequestMethod.GET)
+    public RegionViewModel getTodaysStatsForCountry(@PathVariable("country") String country) {
+        return dashboardService.getTodaysDataForCountry(country);
+    }
 }

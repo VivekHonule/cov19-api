@@ -35,6 +35,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         CovidCase covidCase2 = new CovidCase("Patient2", "India", "Maharashtra", new Date(milliSeconds), "Recovered");
         CovidCase covidCase3 = new CovidCase("Patient3", "India", "Maharashtra", new Date(milliSeconds), "Recovered");
         CovidCase covidCase4 = new CovidCase("Patient4", "India", "Maharashtra", new Date(milliSeconds), "Deceased");
+        CovidCase covidCaseOld = new CovidCase("Old", "India", "Maharashtra", new Date(121, 5, 12), "Deceased");
+
 
         CovidCase covidCase5 = new CovidCase("Patient5", "Australia", "Victoria", new Date(milliSeconds), "Active");
         CovidCase covidCase6 = new CovidCase("Patient6", "Australia", "Victoria", new Date(milliSeconds), "Recovered");
@@ -122,6 +124,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         covidCaseRepository.save(covidCase34);
         covidCaseRepository.save(covidCase35);
         covidCaseRepository.save(covidCase36);
+        covidCaseRepository.save(covidCaseOld);
     }
 }
 
