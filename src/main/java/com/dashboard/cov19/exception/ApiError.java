@@ -1,4 +1,4 @@
-package com.dashboard.cov19;
+package com.dashboard.cov19.exception;
 
 import org.springframework.http.HttpStatus;
 
