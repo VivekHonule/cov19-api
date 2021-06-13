@@ -1,7 +1,5 @@
-package com.dashboard.cov19;
+package com.dashboard.cov19.exception;
 
-import com.dashboard.cov19.exception.LoginException;
-import com.dashboard.cov19.exception.RegistrationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
